@@ -23,8 +23,6 @@ function openView(id){
 function selectProcess(p){
   document.getElementById("process").value=p;
   renderProcess();
-openLesson("composition");
-updateCourseProgress();
   openView("transform");
 }
 
@@ -114,7 +112,7 @@ function calculate(){
   document.getElementById("result").classList.add("show");
 
   lastCalculation={
-    id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())),
+    id:(window.crypto?.randomUUID ? window.crypto.randomUUID() : String(Date.now())),
     createdAt:new Date().toISOString(),
     process:p,
     processLabel:labels[p],
@@ -383,3 +381,7 @@ function resetCourseProgress(){
   openLesson("composition");
   toast("Progression réinitialisée.");
 }
+
+
+openLesson("composition");
+updateCourseProgress();
