@@ -19,6 +19,7 @@
       <button data-view="transform">Transformer</button>
       <button data-view="lots">Mes lots</button>
       <button data-view="learn">Comprendre</button>
+      <button data-view="course">Mode cours</button>
     </nav>
   </div>
 </header>
@@ -34,6 +35,7 @@
           <div class="actions">
             <button class="btn btn-primary" onclick="openView('transform')">Commencer une transformation</button>
             <button class="btn btn-secondary" onclick="openView('learn')">Voir les notions scientifiques</button>
+            <button class="btn btn-course" onclick="openView('course')">📘 Étudier le cours</button>
           </div>
         </div>
         <div class="hero-card">
@@ -188,6 +190,50 @@
       </div>
     </div>
   </section>
+
+  <section id="course" class="view">
+    <div class="section shell">
+      <div class="course-hero card">
+        <div>
+          <div class="eyebrow">📘 MODE COURS</div>
+          <h2>Sciences et qualité des aliments</h2>
+          <p>Apprends une notion, relie-la à un laboratoire puis vérifie ta compréhension avec un mini-quiz.</p>
+        </div>
+        <div class="progress-box">
+          <div class="progress-line">
+            <strong>Progression</strong>
+            <span id="courseProgressText">0 / 5 leçons</span>
+          </div>
+          <div class="progress-track"><div id="courseProgressBar" class="progress-bar"></div></div>
+          <button class="link-btn" onclick="resetCourseProgress()">Réinitialiser la progression</button>
+        </div>
+      </div>
+
+      <div class="course-layout">
+        <aside class="card lesson-menu" aria-label="Leçons">
+          <h3>Leçons</h3>
+          <button class="lesson-tab active" data-lesson="composition" onclick="openLesson('composition')">
+            <span>🥗</span><span><b>1. Composition</b><small>Les grandes familles</small></span>
+          </button>
+          <button class="lesson-tab" data-lesson="water" onclick="openLesson('water')">
+            <span>💧</span><span><b>2. Eau et conservation</b><small>aw, sel, déshydratation</small></span>
+          </button>
+          <button class="lesson-tab" data-lesson="starch" onclick="openLesson('starch')">
+            <span>🍎</span><span><b>3. Amidon et maturité</b><small>Test à l'iode</small></span>
+          </button>
+          <button class="lesson-tab" data-lesson="pectin" onclick="openLesson('pectin')">
+            <span>🧪</span><span><b>4. Pectine et pectinase</b><small>Extraction du jus</small></span>
+          </button>
+          <button class="lesson-tab" data-lesson="onion" onclick="openLesson('onion')">
+            <span>🧅</span><span><b>5. Transformation</b><small>Rendement et coût</small></span>
+          </button>
+        </aside>
+
+        <div id="lessonPanel" class="card lesson-panel"></div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
