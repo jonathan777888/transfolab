@@ -23,6 +23,8 @@ function openView(id){
 function selectProcess(p){
   document.getElementById("process").value=p;
   renderProcess();
+openLesson("composition");
+updateCourseProgress();
   openView("transform");
 }
 
@@ -194,3 +196,190 @@ function toast(msg){
 }
 
 renderProcess();
+
+const courseLessons={
+  composition:{
+    number:1,
+    icon:"🥗",
+    title:"Composition des aliments",
+    intro:"Le cours commence par la composition d'un aliment. L'objectif est de comprendre de quoi l'aliment est constitué, puis de relier cette composition à la conservation, à la transformation et au contrôle de qualité.",
+    points:[
+      "Les six familles de nutriments présentées dans le cours sont : eau, glucides, protéines, lipides, minéraux et vitamines.",
+      "Le cours distingue aussi les composés secondaires, les contaminants et les additifs.",
+      "Une transformation peut modifier les propriétés d'un aliment : il faut donc observer ce qui change avant, pendant et après le procédé."
+    ],
+    lab:"Dans TransfoLab, les mesures de pH, °Brix, masse, rendement et clarté servent à relier la composition de l'aliment au résultat de la transformation.",
+    source:"Notes de cours — Sciences et Qualité des Aliments, Composition des aliments.",
+    quiz:[
+      {q:"Laquelle de ces réponses correspond à une famille de nutriments présentée dans le cours ?",options:["Eau","Emballage","Étiquette"],answer:0,why:"L'eau fait partie des six familles de nutriments listées dans les notes."},
+      {q:"Le cours cherche notamment à comprendre quoi ?",options:["Seulement le prix des aliments","L'impact de la transformation sur les propriétés de l'aliment","Seulement la commercialisation"],answer:1,why:"La cible de formation relie composition, conservation, transformation et contrôle de qualité."},
+      {q:"Quel élément fait partie du contrôle d'un procédé dans TransfoLab ?",options:["pH","Couleur du logo","Nom du navigateur"],answer:0,why:"Le pH est un paramètre mesurable lié à la qualité du produit."}
+    ]
+  },
+  water:{
+    number:2,
+    icon:"💧",
+    title:"Eau et conservation",
+    intro:"Pour comprendre la conservation, il ne suffit pas de connaître la quantité totale d'eau. Il faut surtout comprendre quelle fraction de cette eau reste disponible.",
+    points:[
+      "L'eau libre est faiblement retenue et est plus facilement disponible pour les réactions chimiques et microbiennes.",
+      "L'eau liée est fortement associée aux macromolécules et est plus difficile à éliminer par un simple séchage.",
+      "L'activité de l'eau (aw) décrit la disponibilité de l'eau : une aw plus faible signifie moins d'eau disponible pour les microorganismes.",
+      "Le sel capte une partie de l'eau libre et exerce aussi un effet osmotique sur les cellules microbiennes.",
+      "Salage et déshydratation peuvent être combinés : ce sont deux obstacles agissant sur la disponibilité de l'eau."
+    ],
+    lab:"Labo sel aux herbes : peser avant et après séchage permet de calculer la perte de masse attribuée principalement à l'eau évaporée, puis d'interpréter le résultat avec les notions d'eau libre, d'eau liée et d'aw.",
+    source:"Rapport de laboratoire — Sel aux herbes.",
+    quiz:[
+      {q:"Quel indicateur est présenté comme déterminant pour la stabilité microbiologique ?",options:["L'activité de l'eau (aw)","Le poids du contenant","La couleur de l'étiquette"],answer:0,why:"Le document précise que l'aw, et non seulement la teneur totale en eau, détermine la disponibilité de l'eau pour les microorganismes."},
+      {q:"Quelle eau s'élimine le plus facilement lors du séchage ?",options:["L'eau libre","L'eau liée","Aucune"],answer:0,why:"L'eau libre est faiblement retenue et s'évapore plus facilement."},
+      {q:"Pourquoi combiner salage et déshydratation ?",options:["Pour appliquer deux freins à la disponibilité de l'eau","Pour augmenter l'aw","Pour ajouter seulement du goût"],answer:0,why:"Le labo présente cette combinaison comme un exemple d'obstacles combinés."}
+    ]
+  },
+  starch:{
+    number:3,
+    icon:"🍎",
+    title:"Amidon et maturité de la pomme",
+    intro:"Le test à l'iode permet de visualiser l'amidon encore présent dans la pomme et d'interpréter l'évolution de la maturité.",
+    points:[
+      "L'iode forme un complexe très coloré lorsqu'il entre en contact avec l'amidon.",
+      "Quand l'amidon est brisé en sucres solubles, cette fixation de l'iode n'est plus possible.",
+      "Pendant la maturation, l'amidon se transforme progressivement en sucres solubles : la coloration foncée diminue.",
+      "La régression de l'amidon n'est pas identique pour toutes les variétés de pommes."
+    ],
+    lab:"Si une zone de chair devient moins foncée au test à l'iode, cela indique qu'une partie de l'amidon a déjà été transformée en sucres solubles. L'interprétation doit ensuite être comparée à une charte de maturité adaptée.",
+    source:"CRAAQ — Évaluer la maturité des pommes : test de l'amidon.",
+    quiz:[
+      {q:"Une coloration foncée importante après ajout d'iode indique généralement…",options:["Beaucoup d'amidon","Aucun amidon","Beaucoup de sel"],answer:0,why:"Plus la chair contient d'amidon, plus elle prend une coloration foncée avec l'iode."},
+      {q:"Pendant la maturation, l'amidon devient principalement…",options:["Des sucres solubles","Des protéines","Du sel"],answer:0,why:"Le document explique que l'amidon est progressivement transformé en sucres solubles."},
+      {q:"Tous les cultivars présentent-ils exactement le même patron de régression ?",options:["Oui","Non"],answer:1,why:"Le CRAAQ précise que les patrons de coloration varient selon les variétés."}
+    ]
+  },
+  pectin:{
+    number:4,
+    icon:"🧪",
+    title:"Pectine et pectinase",
+    intro:"La pectine participe à la structure de la pomme. Pendant le pressage, elle peut retenir une partie du jus et contribuer à la viscosité du moût.",
+    points:[
+      "La pectine est un polysaccharide structural présent dans les parois et la lamelle mitoyenne des cellules végétales.",
+      "Dans le moût de pomme, elle peut retenir de l'eau et du jus et limiter l'efficacité du pressage.",
+      "La pectinase dégrade les chaînes pectiques en fragments plus courts et plus solubles.",
+      "Cette dégradation peut réduire la viscosité, libérer davantage de jus et faciliter la clarification.",
+      "Le labo compare un témoin et un traitement à la pectinase avec le rendement d'extraction, le °Brix, le pH et la clarté."
+    ],
+    lab:"Dans le module Jus de pomme, saisis les valeurs du témoin puis celles du lot traité. L'intérêt du labo vient de la comparaison des résultats, pas d'une valeur isolée. Pour la dose, la température et le temps exacts d'une pectinase commerciale, il faut suivre la fiche technique du produit utilisé.",
+    source:"Rapport de laboratoire — Jus de pomme et pectinase.",
+    quiz:[
+      {q:"Pourquoi la pectine peut-elle réduire le rendement d'extraction ?",options:["Elle peut retenir du jus dans la matrice cellulaire","Elle transforme le jus en sel","Elle augmente automatiquement le °Brix"],answer:0,why:"Le labo décrit la pectine comme un élément qui retient une partie du jus et augmente la viscosité."},
+      {q:"Que fait la pectinase ?",options:["Elle dégrade les chaînes pectiques","Elle ajoute de l'amidon","Elle mesure le pH"],answer:0,why:"La pectinase regroupe des activités enzymatiques qui dégradent la chaîne pectique."},
+      {q:"Quelles mesures sont comparées entre témoin et traitement ?",options:["Rendement, °Brix, pH et clarté","Seulement la masse du contenant","Seulement le prix"],answer:0,why:"Ce sont les quatre critères explicitement demandés dans les objectifs du laboratoire."}
+    ]
+  },
+  onion:{
+    number:5,
+    icon:"🧅",
+    title:"Du procédé au produit fini",
+    intro:"Une transformation alimentaire ne s'arrête pas à la recette : il faut aussi décrire les étapes, mesurer le rendement et relier les résultats au coût de revient.",
+    points:[
+      "La fiche oignon demande d'identifier le produit, la recette, les ingrédients, les quantités, la provenance et le rendement obtenu.",
+      "Le temps est séparé entre préparation active, transformation, repos ou séchage et temps total.",
+      "Le coût de revient par portion se calcule en divisant le coût total de la recette par le nombre de portions produites.",
+      "Le calcul de base ne comprend pas automatiquement le coût de la main-d'œuvre.",
+      "La réflexion finale porte aussi sur la conservation, la mise en marché, la réglementation et le volume d'oignons requis."
+    ],
+    lab:"Le module Transformation d'oignons de TransfoLab reprend le calcul coût total ÷ portions. Utilise-le après avoir noté les étapes et le rendement réel de ton produit.",
+    source:"Fiche de transformation — Projet Transformation des oignons.",
+    quiz:[
+      {q:"Formule du coût de revient par portion ?",options:["Coût total ÷ nombre de portions","Nombre de portions ÷ coût total","Prix de vente × temps"],answer:0,why:"C'est la formule donnée dans la fiche de transformation."},
+      {q:"Le calcul de base inclut-il automatiquement la main-d'œuvre ?",options:["Oui","Non"],answer:1,why:"La fiche précise que la main-d'œuvre n'est pas incluse dans le calcul de base."},
+      {q:"Le rendement de la recette peut être exprimé par…",options:["Le nombre de portions ou contenants obtenus","La couleur du produit uniquement","Le nom de l'étudiant"],answer:0,why:"La fiche demande explicitement le nombre de portions ou de contenants produits."}
+    ]
+  }
+};
+
+function getCourseProgress(){
+  try{return JSON.parse(localStorage.getItem("transfolab_course_progress")||"{}")}catch(e){return {}}
+}
+
+function setCourseProgress(progress){
+  localStorage.setItem("transfolab_course_progress",JSON.stringify(progress));
+  updateCourseProgress();
+}
+
+function updateCourseProgress(){
+  const progress=getCourseProgress();
+  const total=Object.keys(courseLessons).length;
+  const done=Object.keys(courseLessons).filter(k=>progress[k]===true).length;
+  const text=document.getElementById("courseProgressText");
+  const bar=document.getElementById("courseProgressBar");
+  if(text) text.textContent=done+" / "+total+" leçons";
+  if(bar) bar.style.width=(done/total*100)+"%";
+  document.querySelectorAll(".lesson-tab").forEach(btn=>{
+    const id=btn.dataset.lesson;
+    const old=btn.querySelector(".lesson-complete");
+    if(old) old.remove();
+    if(progress[id]===true){
+      const badge=document.createElement("span");
+      badge.className="lesson-complete";
+      badge.textContent="✓";
+      btn.appendChild(badge);
+    }
+  });
+}
+
+function openLesson(id){
+  const lesson=courseLessons[id]||courseLessons.composition;
+  document.querySelectorAll(".lesson-tab").forEach(b=>b.classList.toggle("active",b.dataset.lesson===id));
+  const progress=getCourseProgress();
+  const completed=progress[id]===true?'<span class="lesson-complete">✓ Réussie</span>':'';
+  const points=lesson.points.map(x=>"<li>"+x+"</li>").join("");
+  const quiz=lesson.quiz.map((q,i)=>{
+    const opts=q.options.map((o,j)=>'<label class="choice"><input type="radio" name="quiz_'+id+'_'+i+'" value="'+j+'"><span>'+o+'</span></label>').join("");
+    return '<div class="quiz-question"><p>'+(i+1)+'. '+q.q+'</p>'+opts+'</div>';
+  }).join("");
+  document.getElementById("lessonPanel").innerHTML=
+    '<div class="lesson-kicker">Leçon '+lesson.number+' sur 5</div>'+
+    '<h2>'+lesson.icon+' '+lesson.title+completed+'</h2>'+
+    '<p class="lesson-intro">'+lesson.intro+'</p>'+
+    '<div class="lesson-block"><h3>À retenir</h3><ul>'+points+'</ul></div>'+
+    '<div class="lesson-block lab-link"><h3>🔬 Lien avec ton laboratoire</h3><p>'+lesson.lab+'</p></div>'+
+    '<div class="quiz"><h3>Mini-quiz</h3><p>Réponds aux 3 questions pour vérifier ta compréhension.</p>'+quiz+
+      '<button class="btn btn-course" onclick="checkLessonQuiz(\''+id+'\')">Vérifier mes réponses</button>'+
+      '<div id="quizFeedback" class="quiz-feedback" style="display:none"></div>'+
+    '</div>'+
+    '<div class="source-note">Source utilisée : '+lesson.source+'</div>';
+  updateCourseProgress();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function checkLessonQuiz(id){
+  const lesson=courseLessons[id];
+  let score=0;
+  let feedback=[];
+  lesson.quiz.forEach((q,i)=>{
+    const selected=document.querySelector('input[name="quiz_'+id+'_'+i+'"]:checked');
+    const value=selected?Number(selected.value):-1;
+    if(value===q.answer) score++;
+    else feedback.push("Question "+(i+1)+" : "+q.why);
+  });
+  const box=document.getElementById("quizFeedback");
+  box.style.display="block";
+  if(score===lesson.quiz.length){
+    box.className="quiz-feedback success";
+    box.innerHTML="<b>3 / 3 — Bravo.</b> Tu as réussi cette leçon.";
+    const progress=getCourseProgress();
+    progress[id]=true;
+    setCourseProgress(progress);
+  }else{
+    box.className="quiz-feedback retry";
+    box.innerHTML="<b>"+score+" / "+lesson.quiz.length+"</b><br>"+feedback.join("<br>");
+  }
+}
+
+function resetCourseProgress(){
+  if(!confirm("Réinitialiser la progression du Mode cours ?")) return;
+  localStorage.removeItem("transfolab_course_progress");
+  updateCourseProgress();
+  openLesson("composition");
+  toast("Progression réinitialisée.");
+}
