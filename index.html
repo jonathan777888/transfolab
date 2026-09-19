@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0f6a4b" />
+  <title>TransfoLab — Transformation alimentaire</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header>
+  <div class="shell nav">
+    <div class="brand">
+      <div class="brand-mark">TL</div>
+      <div>TransfoLab<small>Transformation alimentaire</small></div>
+    </div>
+    <nav>
+      <button class="active" data-view="home">Accueil</button>
+      <button data-view="transform">Transformer</button>
+      <button data-view="lots">Mes lots</button>
+      <button data-view="learn">Comprendre</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="home" class="view active">
+    <div class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow">🌱 De l'aliment brut au produit fini</div>
+          <h1>Transforme.<br>Mesure.<br>Comprends.</h1>
+          <p>TransfoLab aide à organiser une transformation alimentaire, suivre des paramètres de qualité, calculer des rendements et conserver un historique des lots.</p>
+          <div class="actions">
+            <button class="btn btn-primary" onclick="openView('transform')">Commencer une transformation</button>
+            <button class="btn btn-secondary" onclick="openView('learn')">Voir les notions scientifiques</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <h3>Flux de travail</h3>
+          <div class="flow">
+            <div class="flow-row"><span>🍎</span><b>1. Identifier l'aliment</b></div>
+            <div class="flow-row"><span>🧪</span><b>2. Mesurer les paramètres</b></div>
+            <div class="flow-row"><span>⚙️</span><b>3. Suivre le procédé</b></div>
+            <div class="flow-row"><span>📊</span><b>4. Calculer et enregistrer</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section shell">
+      <div class="section-head">
+        <div>
+          <h2>Bibliothèque de départ</h2>
+          <p>Trois procédés pour la première version fonctionnelle.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="card food-card" onclick="selectProcess('apple')">
+          <div class="emoji">🍎</div>
+          <h3>Jus de pomme</h3>
+          <p>Masse initiale, jus obtenu, pH, °Brix, clarté et rendement d'extraction.</p>
+          <span class="tag">Rendement</span>
+        </article>
+
+        <article class="card food-card" onclick="selectProcess('herbs')">
+          <div class="emoji">🌿</div>
+          <h3>Sel aux herbes</h3>
+          <p>Masse avant/après déshydratation et calcul de la perte de poids.</p>
+          <span class="tag">Déshydratation</span>
+        </article>
+
+        <article class="card food-card" onclick="selectProcess('onion')">
+          <div class="emoji">🧅</div>
+          <h3>Transformation d'oignons</h3>
+          <p>Recette, rendement, coût total, portions et coût de revient.</p>
+          <span class="tag">Coût de revient</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="transform" class="view">
+    <div class="section shell">
+      <div class="section-head">
+        <div>
+          <h2>Nouvelle transformation</h2>
+          <p>Choisis un procédé, saisis tes mesures et enregistre le lot.</p>
+        </div>
+      </div>
+
+      <div class="workspace">
+        <aside class="card side-card">
+          <h3>Étapes</h3>
+          <div class="step active">1. Choisir le procédé</div>
+          <div class="step">2. Saisir les données</div>
+          <div class="step">3. Calculer</div>
+          <div class="step">4. Enregistrer le lot</div>
+          <div class="callout">Prototype pédagogique : les paramètres critiques de sécurité alimentaire doivent être validés avec des procédures officielles applicables.</div>
+        </aside>
+
+        <div class="card">
+          <div class="panel-title">
+            <h3>Données du lot</h3>
+            <span id="processBadge" class="tag">Jus de pomme</span>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="process">Procédé</label>
+              <select id="process" onchange="renderProcess()">
+                <option value="apple">🍎 Jus de pomme</option>
+                <option value="herbs">🌿 Sel aux herbes</option>
+                <option value="onion">🧅 Transformation d'oignons</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="lotName">Nom ou numéro de lot</label>
+              <input id="lotName" placeholder="Ex. POM-2026-09-19-01" />
+            </div>
+
+            <div class="field">
+              <label for="date">Date</label>
+              <input id="date" type="date" />
+            </div>
+
+            <div class="field">
+              <label for="variety">Variété / matière première</label>
+              <input id="variety" placeholder="Ex. McIntosh, basilic, oignon jaune" />
+            </div>
+          </div>
+
+          <div id="dynamicFields" class="dynamic-fields"></div>
+
+          <div class="actions">
+            <button class="btn btn-primary" onclick="calculate()">Calculer</button>
+            <button class="btn btn-secondary" onclick="resetForm()">Réinitialiser</button>
+          </div>
+
+          <div id="result" class="result">
+            <div id="resultMetrics" class="result-grid"></div>
+            <div id="resultNote" class="callout"></div>
+            <button class="btn btn-primary" onclick="saveLot()">Enregistrer ce lot</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lots" class="view">
+    <div class="section shell">
+      <div class="section-head">
+        <div>
+          <h2>Mes lots</h2>
+          <p>Les lots sont enregistrés dans ce navigateur.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-secondary" onclick="exportCSV()">Exporter CSV</button>
+          <button class="btn btn-danger" onclick="clearLots()">Tout effacer</button>
+        </div>
+      </div>
+      <div id="lotsContainer"></div>
+    </div>
+  </section>
+
+  <section id="learn" class="view">
+    <div class="section shell">
+      <div class="section-head">
+        <div>
+          <h2>Comprendre la transformation</h2>
+          <p>Notions scientifiques intégrées au prototype.</p>
+        </div>
+      </div>
+
+      <div class="knowledge">
+        <article class="card"><h3>💧 Eau et conservation</h3><p>L'eau disponible pour les microorganismes est importante pour comprendre déshydratation, salage et conservation.</p></article>
+        <article class="card"><h3>🍎 Amidon et maturité</h3><p>Dans la pomme, l'amidon diminue progressivement pendant la maturation à mesure qu'il est transformé en sucres.</p></article>
+        <article class="card"><h3>🧪 Pectine et pectinase</h3><p>La pectine contribue à la structure du fruit. La pectinase peut améliorer l'extraction et faciliter la clarification du jus.</p></article>
+        <article class="card"><h3>🧂 Sel et déshydratation</h3><p>Le salage et la déshydratation réduisent la disponibilité de l'eau et peuvent être combinés dans un procédé de conservation.</p></article>
+      </div>
+
+      <div class="card sources">
+        <h3>Ressources</h3>
+        <p>Le prototype a été structuré à partir de tes documents de cours : composition des aliments, test de l'amidon, jus de pomme à la pectinase, sel aux herbes et transformation des oignons.</p>
+        <p><a href="https://archeologie-sel.inrap.fr/Archeologie-du-Sel/home" target="_blank" rel="noopener">Inrap — Archéologie du sel ↗</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="shell">TransfoLab — MVP pédagogique de transformation alimentaire.</div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
