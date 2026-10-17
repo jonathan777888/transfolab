@@ -18,6 +18,7 @@
       <button class="active" data-view="home">Accueil</button>
       <button data-view="transform">Transformer</button>
       <button data-view="lots">Mes lots</button>
+      <button data-view="documents">Mes documents</button>
       <button data-view="learn">Comprendre</button>
       <button data-view="course">Mode cours</button>
     </nav>
@@ -36,6 +37,7 @@
             <button class="btn btn-primary" onclick="openView('transform')">Commencer une transformation</button>
             <button class="btn btn-secondary" onclick="openView('learn')">Voir les notions scientifiques</button>
             <button class="btn btn-course" onclick="openView('course')">📘 Étudier le cours</button>
+            <button class="btn btn-secondary" onclick="openView('documents')">📂 Ouvrir mes documents</button>
           </div>
         </div>
         <div class="hero-card">
@@ -164,6 +166,56 @@
         </div>
       </div>
       <div id="lotsContainer"></div>
+    </div>
+  </section>
+
+  <section id="documents" class="view">
+    <div class="section shell">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">📂 BIBLIOTHÈQUE TRANSFOLAB</div>
+          <h2 style="margin-top:14px">Mes documents</h2>
+          <p>Les cours, rapports, fiches et guides utilisés dans TransfoLab sont regroupés dans une bibliothèque publique en lecture seule.</p>
+        </div>
+        <span class="tag">9 fichiers disponibles</span>
+      </div>
+
+      <div class="callout"><strong>Utilisation :</strong> ouvre la bibliothèque, choisis un fichier, puis utilise les options de lecture ou de téléchargement de Word, PowerPoint ou PDF. Les documents sont publics : n’ajoute aucune information confidentielle.</div>
+
+      <div class="grid-3" style="margin-top:18px">
+        <article class="card">
+          <div class="emoji">📘</div>
+          <h3>Guides de révision</h3>
+          <p>Guide complet Second Cerveau en Word et PDF, ainsi qu’une présentation visuelle des notions de transformation alimentaire.</p>
+          <span class="tag">3 fichiers</span>
+        </article>
+        <article class="card">
+          <div class="emoji">🥗</div>
+          <h3>Cours principal</h3>
+          <p>Les aliments et leur composition : eau, glucides, protéines, lipides, minéraux et vitamines.</p>
+          <span class="tag">1 fichier</span>
+        </article>
+        <article class="card">
+          <div class="emoji">🧪</div>
+          <h3>Laboratoires réalisés</h3>
+          <p>Test de l’amidon, jus de pomme et pectinase, sel aux herbes et transformation des oignons.</p>
+          <span class="tag">4 fichiers</span>
+        </article>
+        <article class="card">
+          <div class="emoji">👩‍🍳</div>
+          <h3>Nouveau travail de session</h3>
+          <p>Cahier des employés, recette standardisée, contrôles qualité et comparaison des deux cuisines.</p>
+          <span class="tag">1 fichier</span>
+        </article>
+        <article class="card" style="grid-column:span 2">
+          <div class="emoji">📁</div>
+          <h3>Ouvrir tous les documents</h3>
+          <p>La bibliothèque contient les fichiers originaux. Tu peux les lire dans le navigateur ou les télécharger sur ton appareil.</p>
+          <div class="actions">
+            <a class="btn btn-primary" style="text-decoration:none" href="https://1drv.ms/f/c/1ad509795a138ac4/IgDaDucuSjQJQZt7WPe4I7CCAWZSuzBYeFTAA6DcyLiBqDE" target="_blank" rel="noopener">Ouvrir la bibliothèque ↗</a>
+          </div>
+        </article>
+      </div>
     </div>
   </section>
 
