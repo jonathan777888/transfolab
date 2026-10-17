@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#173f34">
+  <title>TransfoLab — Second Cerveau</title>
+  <link rel="stylesheet" href="second-cerveau.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <a class="brand" href="index.html" aria-label="Retour à TransfoLab">
+      <span class="brand-mark">TL</span>
+      <span>TransfoLab<small>Mode d’apprentissage Second Cerveau</small></span>
+    </a>
+    <nav class="top-actions" aria-label="Navigation Second Cerveau">
+      <a href="index.html">← TransfoLab</a>
+      <a class="guide-link" href="https://1drv.ms/w/c/1ad509795a138ac4/IQBGd5t_vVDSRKMZkMtU_iPmASNNrGvSlVGvZn7Zciulj9k" target="_blank" rel="noopener">Ouvrir le guide complet ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <span class="eyebrow">🧠 APPRENDRE À PARTIR DES COURS ET TRAVAUX RÉALISÉS</span>
+        <h1>Comprendre.<br>Expliquer.<br>Pratiquer.</h1>
+        <p>Ce mode utilise le guide complet de révision de TransfoLab. Tu réponds d’abord sans regarder, puis tu compares avec la réponse de référence, tu corriges tes erreurs et tu programmes la révision.</p>
+        <div class="hero-actions">
+          <button class="btn primary" id="startButton" type="button">Commencer l’entraînement</button>
+          <button class="btn secondary" id="resumeButton" type="button">Reprendre ma dernière notion</button>
+        </div>
+      </div>
+      <aside class="cycle-card" aria-label="Cycle Second Cerveau">
+        <span class="cycle-title">Cycle réel</span>
+        <div class="cycle-flow">
+          <span>WHAT</span><span>WHO</span><span>WHERE</span><span>WHEN</span><span>WHY</span><span>HOW</span><span>WHAT IF</span><span>EXPLAIN</span><span>PRACTICE</span><span>TEST</span><span>CORRECT</span><span>REVIEW</span>
+        </div>
+        <p>Lire = reconnaître. Se tester = mémoriser. Expliquer = comprendre. Faire = appliquer.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="shell method-strip" aria-label="Règles de la méthode">
+    <article><b>1. Sans regarder</b><span>Reconstruis la notion de mémoire.</span></article>
+    <article><b>2. Avec tes mots</b><span>Explique simplement, comme à une autre personne.</span></article>
+    <article><b>3. Avec un exemple</b><span>Relie la théorie à un laboratoire ou à une transformation.</span></article>
+    <article><b>4. Avec correction</b><span>Note l’erreur, sa cause et la bonne réponse.</span></article>
+  </section>
+
+  <section class="shell workspace" id="workspace">
+    <aside class="topic-panel card">
+      <div class="topic-panel-head">
+        <span class="kicker">Programme complet</span>
+        <h2>Notions à maîtriser</h2>
+        <p>Le contenu suit le guide de révision et les documents sources.</p>
+      </div>
+      <label class="search-label" for="topicSearch">Rechercher une notion</label>
+      <input id="topicSearch" class="topic-search" type="search" placeholder="Ex. : pectinase, eau, calcul…">
+      <div id="topicList" class="topic-list" role="list"></div>
+      <div class="topic-progress-card">
+        <div><b>Progression générale</b><span id="globalProgressText">0 / 14 notions</span></div>
+        <div class="progress-track"><div id="globalProgressBar" class="progress-bar"></div></div>
+      </div>
+    </aside>
+
+    <div class="lesson-area">
+      <section class="lesson-head card">
+        <div>
+          <span class="kicker" id="topicNumber">Notion 1</span>
+          <h2 id="topicTitle">Transformation alimentaire</h2>
+          <p id="topicIntro"></p>
+        </div>
+        <div class="lesson-head-actions">
+          <span class="status-pill" id="topicStatus">À commencer</span>
+          <button class="btn small secondary" type="button" id="markComplete">Marquer comme maîtrisée</button>
+        </div>
+      </section>
+
+      <div class="phase-nav" role="tablist" aria-label="Étapes de l’apprentissage">
+        <button class="active" type="button" data-phase="understand">1. Comprendre</button>
+        <button type="button" data-phase="reconstruct">2. Reconstruire</button>
+        <button type="button" data-phase="explain">3. Expliquer</button>
+        <button type="button" data-phase="practice">4. Pratiquer</button>
+        <button type="button" data-phase="test">5. Tester</button>
+        <button type="button" data-phase="correct">6. Corriger</button>
+        <button type="button" data-phase="review">7. Réviser</button>
+      </div>
+
+      <section class="phase active card" id="phase-understand" data-phase-panel="understand">
+        <div class="phase-heading">
+          <div><span class="phase-step">COMPRENDRE</span><h3>Lire l’idée générale une seule fois</h3></div>
+          <button type="button" class="btn small secondary" id="toggleReference">Masquer la référence</button>
+        </div>
+        <div id="referenceBlock">
+          <div class="reference-summary" id="referenceSummary"></div>
+          <div class="reference-grid" id="referenceGrid"></div>
+          <div class="reference-box"><b>Méthode Feynman — version simple</b><p id="feynmanReference"></p></div>
+          <div class="example-box"><b>Exemple concret</b><p id="exampleReference"></p></div>
+        </div>
+        <div class="instruction-box">Après cette lecture, passe à <strong>Reconstruire</strong> et réponds sans rouvrir la référence.</div>
+      </section>
+
+      <section class="phase card" id="phase-reconstruct" data-phase-panel="reconstruct">
+        <div class="phase-heading"><div><span class="phase-step">RECONSTRUIRE</span><h3>Répondre de mémoire aux sept questions</h3></div></div>
+        <p class="phase-copy">Écris ce dont tu te souviens. Une réponse incomplète est utile : elle montre précisément ce qu’il faut retravailler.</p>
+        <div id="reconstructQuestions" class="reconstruct-grid"></div>
+        <div class="phase-actions">
+          <button type="button" class="btn primary" id="saveReconstruction">Enregistrer mes réponses</button>
+          <button type="button" class="btn secondary" id="compareAnswers">Comparer avec la référence</button>
+        </div>
+        <div id="comparisonBlock" class="comparison-block" hidden></div>
+      </section>
+
+      <section class="phase card" id="phase-explain" data-phase-panel="explain">
+        <div class="phase-heading"><div><span class="phase-step">EXPLAIN</span><h3>Expliquer avec tes mots</h3></div></div>
+        <p class="phase-copy">Explique la notion simplement, sans copier la réponse de référence. Imagine que tu l’enseignes à une personne qui ne connaît pas le sujet.</p>
+        <label for="feynmanInput">Mon explication Feynman</label>
+        <textarea id="feynmanInput" rows="7" placeholder="Dans mes mots, cette notion veut dire que…"></textarea>
+        <label for="exampleInput">Mon exemple concret ou mon analogie</label>
+        <textarea id="exampleInput" rows="4" placeholder="Je relie cette notion au laboratoire / à une situation réelle…"></textarea>
+        <div class="phase-actions"><button type="button" class="btn primary" id="saveExplanation">Enregistrer mon explication</button><button type="button" class="btn secondary" id="showFeynman">Voir l’explication de référence</button></div>
+        <div id="feynmanCompare" class="reference-box" hidden></div>
+      </section>
+
+      <section class="phase card" id="phase-practice" data-phase-panel="practice">
+        <div class="phase-heading"><div><span class="phase-step">PRACTICE</span><h3>Faire un exercice sans regarder</h3></div></div>
+        <div class="practice-question"><span>Exercice</span><p id="practiceQuestion"></p></div>
+        <label for="practiceInput">Ma démarche et ma réponse</label>
+        <textarea id="practiceInput" rows="7" placeholder="Je montre ma démarche, mon calcul ou mon raisonnement…"></textarea>
+        <div class="phase-actions"><button type="button" class="btn primary" id="savePractice">Enregistrer mon exercice</button><button type="button" class="btn secondary" id="showPracticeAnswer">Vérifier la réponse</button></div>
+        <div id="practiceAnswer" class="correction-box" hidden></div>
+      </section>
+
+      <section class="phase card" id="phase-test" data-phase-panel="test">
+        <div class="phase-heading"><div><span class="phase-step">TEST</span><h3>Mini-test de rappel actif</h3></div></div>
+        <p class="phase-copy">Réponds sans retourner aux étapes précédentes. Le résultat sert à choisir ce qu’il faut revoir, pas à te juger.</p>
+        <form id="quizForm" class="quiz-form"></form>
+        <div class="phase-actions"><button type="submit" form="quizForm" class="btn primary">Corriger le mini-test</button></div>
+        <div id="quizResult" class="quiz-result" hidden></div>
+      </section>
+
+      <section class="phase card" id="phase-correct" data-phase-panel="correct">
+        <div class="phase-heading"><div><span class="phase-step">CORRECT</span><h3>Journal des erreurs</h3></div></div>
+        <p class="phase-copy">Ne remplace pas seulement ta réponse. Note ce qui était faux ou incomplet, pourquoi l’erreur est arrivée et ce que tu dois retenir.</p>
+        <div class="correction-grid">
+          <div><label for="errorInput">Mon erreur ou mon manque</label><textarea id="errorInput" rows="5" placeholder="J’ai oublié / confondu…"></textarea></div>
+          <div><label for="causeInput">Cause probable</label><textarea id="causeInput" rows="5" placeholder="Je n’avais pas compris / j’ai lu trop vite / j’ai confondu avec…"></textarea></div>
+          <div><label for="correctionInput">Correction à retenir</label><textarea id="correctionInput" rows="5" placeholder="La bonne idée est…"></textarea></div>
+        </div>
+        <div class="phase-actions"><button type="button" class="btn primary" id="saveCorrection">Enregistrer la correction</button></div>
+      </section>
+
+      <section class="phase card" id="phase-review" data-phase-panel="review">
+        <div class="phase-heading"><div><span class="phase-step">REVIEW</span><h3>Répétition espacée</h3></div></div>
+        <p class="phase-copy">À chaque date, commence par répondre de mémoire avant de relire. Coche seulement après avoir fait un vrai rappel actif.</p>
+        <div id="reviewSchedule" class="review-schedule"></div>
+        <div class="cornell card-inner">
+          <div class="cornell-head"><div><span class="phase-step">FICHE CORNELL</span><h3>Synthèse personnelle</h3></div></div>
+          <div class="cornell-grid">
+            <div><label for="cornellKeywords">Mots-clés / questions</label><textarea id="cornellKeywords" rows="7" placeholder="Eau libre, aw, pourquoi…"></textarea></div>
+            <div><label for="cornellNotes">Prise de notes</label><textarea id="cornellNotes" rows="7" placeholder="Les idées essentielles avec mes mots…"></textarea></div>
+          </div>
+          <label for="cornellSummary">Synthèse en une phrase</label>
+          <textarea id="cornellSummary" rows="3" placeholder="En une phrase, je retiens que…"></textarea>
+          <div class="phase-actions"><button type="button" class="btn primary" id="saveCornell">Enregistrer ma fiche Cornell</button></div>
+        </div>
+      </section>
+
+      <section class="data-actions card">
+        <div><h3>Mes données d’apprentissage</h3><p>Les réponses restent dans ce navigateur. Elles ne sont pas envoyées à un serveur.</p></div>
+        <div class="phase-actions"><button type="button" class="btn secondary" id="exportLearning">Exporter mes réponses</button><button type="button" class="btn danger" id="resetLearning">Effacer ma progression</button></div>
+      </section>
+    </div>
+  </section>
+</main>
+
+<footer><div class="shell">TransfoLab · Méthode d’apprentissage du Second Cerveau · Réponses basées sur les cours et travaux réalisés.</div></footer>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="second-cerveau.js"></script>
+</body>
+</html>
