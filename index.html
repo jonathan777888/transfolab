@@ -6,6 +6,14 @@
   <meta name="theme-color" content="#0f6a4b" />
   <title>TransfoLab — Transformation alimentaire</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    nav .brain-link{display:inline-flex;align-items:center;text-decoration:none;padding:10px 12px;border-radius:10px;background:#3f315b;color:#fff;font-weight:800;font-size:14px}
+    nav .brain-link:hover{background:#2f2445;color:#fff}
+    .brain-callout{display:flex;justify-content:space-between;align-items:center;gap:18px;margin:18px 0;padding:17px 19px;border:1px solid #d8cde6;background:#f5f1f9;border-radius:16px}
+    .brain-callout h3{margin:0 0 6px;color:#4e376a}.brain-callout p{margin:0;color:#66766f;line-height:1.55;font-size:13px}
+    .brain-callout a{text-decoration:none;white-space:nowrap}
+    @media(max-width:760px){nav .brain-link{font-size:12px;padding:9px 10px}.brain-callout{align-items:flex-start;flex-direction:column}.brain-callout a{white-space:normal}}
+  </style>
 </head>
 <body>
 <header>
@@ -21,6 +29,7 @@
       <button data-view="documents">Mes documents</button>
       <button data-view="learn">Comprendre</button>
       <button data-view="course">Mode cours</button>
+      <a class="brain-link" href="second-cerveau.html">🧠 Second Cerveau</a>
     </nav>
   </div>
 </header>
@@ -34,6 +43,7 @@
           <h1>Transforme.<br>Mesure.<br>Comprends.</h1>
           <p>TransfoLab aide à organiser une transformation alimentaire, suivre des paramètres de qualité, calculer des rendements et conserver un historique des lots.</p>
           <div class="actions">
+            <a class="btn btn-course" style="text-decoration:none" href="second-cerveau.html">🧠 Apprendre avec Second Cerveau</a>
             <button class="btn btn-primary" onclick="openView('transform')">Commencer une transformation</button>
             <button class="btn btn-secondary" onclick="openView('learn')">Voir les notions scientifiques</button>
             <button class="btn btn-course" onclick="openView('course')">📘 Étudier le cours</button>
@@ -53,6 +63,10 @@
     </div>
 
     <div class="section shell">
+      <div class="brain-callout">
+        <div><h3>Le guide Second Cerveau est maintenant le cœur de l’apprentissage</h3><p>Répondre de mémoire, expliquer avec ses mots, pratiquer, tester, corriger et revoir à J+1, J+3, J+7, J+14 et J+30.</p></div>
+        <a class="btn btn-course" href="second-cerveau.html">Ouvrir l’entraînement →</a>
+      </div>
       <div class="section-head">
         <div>
           <h2>Bibliothèque de départ</h2>
@@ -180,6 +194,11 @@
         <span class="tag">9 fichiers disponibles</span>
       </div>
 
+      <div class="brain-callout">
+        <div><h3>Guide complet de révision — Second Cerveau</h3><p>Le guide ne sert pas seulement de document à lire. Il alimente maintenant un entraînement interactif avec reconstruction, Feynman, pratique, test, correction, Cornell et répétition espacée.</p></div>
+        <a class="btn btn-course" href="second-cerveau.html">Utiliser le guide →</a>
+      </div>
+
       <div class="callout"><strong>Utilisation :</strong> ouvre la bibliothèque, choisis un fichier, puis utilise les options de lecture ou de téléchargement de Word, PowerPoint ou PDF. Les documents sont publics : n’ajoute aucune information confidentielle.</div>
 
       <div class="grid-3" style="margin-top:18px">
@@ -228,6 +247,11 @@
         </div>
       </div>
 
+      <div class="brain-callout">
+        <div><h3>Comprendre n’est que la première étape</h3><p>Après la lecture, utilise le mode Second Cerveau pour reconstruire la notion sans regarder, l’expliquer, la pratiquer et la tester.</p></div>
+        <a class="btn btn-course" href="second-cerveau.html">Passer à l’entraînement →</a>
+      </div>
+
       <div class="knowledge">
         <article class="card"><h3>💧 Eau et conservation</h3><p>L'eau disponible pour les microorganismes est importante pour comprendre déshydratation, salage et conservation.</p></article>
         <article class="card"><h3>🍎 Amidon et maturité</h3><p>Dans la pomme, l'amidon diminue progressivement pendant la maturation à mesure qu'il est transformé en sucres.</p></article>
@@ -250,6 +274,7 @@
           <div class="eyebrow">📘 MODE COURS</div>
           <h2>Sciences et qualité des aliments</h2>
           <p>Apprends une notion, relie-la à un laboratoire puis vérifie ta compréhension avec un mini-quiz.</p>
+          <div class="actions"><a class="btn btn-course" style="text-decoration:none" href="second-cerveau.html">🧠 Entraînement complet Second Cerveau</a></div>
         </div>
         <div class="progress-box">
           <div class="progress-line">
